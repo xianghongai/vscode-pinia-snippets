@@ -1,0 +1,156 @@
+{
+	"pinia": {
+		"prefix": "pinia",
+		"body": [
+			"import { createPinia } from 'pinia';",
+			"const pinia = createPinia();",
+			"${1:app}.use(pinia);"
+		],
+		"description": "Create a pinia instance (the root store) and pass it to the app as a plugin.\n"
+	},
+	"pinia using Vue 2": {
+		"prefix": "pinia4vue2",
+		"body": [
+			"import { createPinia, PiniaVuePlugin } from 'pinia';",
+			"Vue.use(PiniaVuePlugin);",
+			"const ${1:pinia} = createPinia();"
+		],
+		"description": "using Vue 2, you also need to install a plugin and inject the created pinia at the root of the app\n"
+	},
+	"Pinia Defining Composing Stores": {
+		"prefix": ["defineStore", "ds"],
+		"body": [
+			"import { defineStore } from 'pinia';",
+			"",
+			"export const use${1/(.*)/${1:/pascalcase}/}Store = defineStore('${1:feature}', () => {",
+			"\t$2",
+			"\treturn {",
+			"\t\t$3",
+			"\t}",
+			"});",
+			""
+		],
+		"description": "`defineStore()` accepts two distinct values for its second argument:\na Setup function or an Options object.\nIn Setup Stores:\n- `ref()`s become `state` properties,\n- `computed()`s become `getters`\n- `function()`s become `actions`\n"
+	},
+	"Pinia Defining Option Stores": {
+		"prefix": ["defineStore", "dos"],
+		"body": [
+			"import { defineStore } from 'pinia';",
+			"",
+			"export const use${1/(.*)/${1:/pascalcase}/}Store = defineStore('${1:feature}', {",
+			"\tstate: () => ({",
+			"\t\t${2}",
+			"\t}),",
+			"\tgetters: {",
+			"\t\t${3}",
+			"\t},",
+			"\tactions: {",
+			"\t\t${4}",
+			"\t},",
+			"});",
+			""
+		],
+		"description": "Pass an Options Object with state, actions, and getters properties.\nYou can think of:\n- `state` as the `data` of the store,\n- `getters` as the `computed` properties of the store,\n- `actions` as the `methods` of the store.\n"
+	},
+	"Import Pinia Store": {
+		"prefix": "ims",
+		"body": [
+			"import { use${1/(.*)/${1:/pascalcase}/}Store } from '@/stores/${1:feature}';",
+			"${2:const ${1/(.*)/${1:/camelcase}/}Store = use${1/(.*)/${1:/pascalcase}/}Store();}"
+		],
+		"description": "Import a Pinia Store"
+	},
+	"Import Pinia storeToRefs()": {
+		"prefix": "imstr",
+		"body": [
+			"import { storeToRefs } from 'pinia';",
+			"${1:const { properties \\} = storeToRefs(store);}"
+		],
+		"description": "Import Pinia storeToRefs"
+	},
+	"Import Pinia mapState": {
+		"prefix": "imms",
+		"body": [
+			"import { mapState } from 'pinia';",
+			"${3:...mapState(use${1:Feature}Store, ['${2:state/getter}']),}"
+		],
+		"description": "Usage with the Options API, use the `mapState()` helper to map state properties as readonly `computed` properties,\nyou can also write a function that gets access to the store.\n"
+	},
+	"Import Pinia mapActions": {
+		"prefix": "imma",
+		"body": [
+			"import { mapActions } from 'pinia';",
+			"${3:...mapActions(use${1:Feature}Store, ['${2:actions}']),}"
+		],
+		"description": "Usage with the Options API, use the `mapActions()` helper to map actions properties as `methods` in Vue component.\n"
+	},
+	"Import Pinia mapWritableState": {
+		"prefix": "immws",
+		"body": [
+			"import { mapWritableState } from 'pinia';",
+			"${3:...mapWritableState(use${1:Feature}Store, ['${2:state/getter}']),}"
+		],
+		"description": "use the `mapWritableState()` helper to map writable state properties as computed properties,\nyou cannot pass a function. (e.g. have a form)\n"
+	},
+	"Pinia Options API - Without setup() - mapState()": {
+		"prefix": "ms",
+		"body": ["...mapState(use${1:Feature}Store, ['${2:state/getter}']),"],
+		"description": "Usage with the Options API, use the `mapState()` helper to map `state/getters` properties as readonly `computed` properties,\nyou can also write a function that gets access to the `store`.\n"
+	},
+	"Pinia Options API - Without setup() - mapActions()": {
+		"prefix": "ma",
+		"body": ["...mapActions(use${1:Feature}Store, ['${2:actions}']),"],
+		"description": "Usage with the Options API, use the `mapActions()` helper to map `actions` properties as `methods` in Vue component.\n"
+	},
+	"Pinia Options API - Without setup() - mapWritableState()": {
+		"prefix": "mws",
+		"body": [
+			"...mapWritableState(use${1:Feature}Store, ['${2:state/getter}']),"
+		],
+		"description": "use the `mapWritableState()` helper to map writable state properties as computed properties,\nyou cannot pass a function. (e.g. have a form)\n"
+	},
+	"Pinia Mutating the state ($patch)": {
+		"prefix": ["store.$patch", "sp"],
+		"body": ["${1:feature}Store.\\$patch((state) => {", "\t$2", "});"],
+		"description": "Mutating the state.\n"
+	},
+	"Pinia Subscribing to state ($subscribe)": {
+		"prefix": ["store.$subscribe", "ss"],
+		"body": [
+			"${1:feature}Store.\\$subscribe((mutation, state) => {",
+			"\t$2",
+			"});"
+		],
+		"description": "Pinia Subscribing to the state.\nthis subscription will be kept even after the component is unmounted:\n`featureStore.$subscribe(callback, { detached: true })`\n"
+	},
+	"Pinia Composition API - With setup()": {
+		"prefix": ["store2composition", "us"],
+		"body": [
+			"${2:const ${1/(.*)/${1:/camelcase}/}Store = use${1/(.*)/${1:/pascalcase}/}Store();}"
+		],
+		"description": "directly access any `state/getter` as a property of the store instance"
+	},
+	"Pinia Options API - With setup()": {
+		"prefix": ["store2option", "uso"],
+		"body": [
+			"setup() {",
+			"\tconst ${1:feature}Store = use${1/(.*)/${1:/pascalcase}/}Store()",
+			"\treturn { ${1:feature}Store }",
+			"},"
+		],
+		"description": "The `setup()` hook can make using Pinia easier to work with in the Options API. No extra map helper functions needed.\n"
+	},
+	"Pinia Subscribing to actions ($onAction)": {
+		"prefix": ["store.$onAction", "sa"],
+		"body": [
+			"const unsubscribe = ${1:feature}Store.\\$onAction(",
+			"\t({ name, store, args, after, onError }) => {",
+			"\t\t$2",
+			"\t\tafter((result) => { });",
+			"\t\tonError((error) => { });",
+			"\t}",
+			");"
+		],
+		"description": "By default, action subscriptions are bound to the component where they are added, they will be automatically removed when the component is unmounted.\nIf you also want to keep them after the component is unmounted, pass `true` as the second argument to detach the action subscription from the current component.\n"
+	}
+}
