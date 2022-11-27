@@ -1,79 +1,79 @@
 {
-	"name": "vscode-pinia-snippets",
-	"publisher": "NicholasHsiang",
-	"displayName": "Pinia Snippets",
-	"description": "Code snippets for Pinia",
-	"icon": "art/icon.png",
-	"version": "1.0.0",
-	"galleryBanner": {
-		"color": "#ffffff",
-		"theme": "dark"
-	},
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/xianghongai/vscode-pinia-snippets/issues"
-	},
-	"homepage": "https://github.com/xianghongai/vscode-pinia-snippets/",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/xianghongai/vscode-pinia-snippets/blob/master/README.md"
-	},
-	"engines": {
-		"vscode": "^0.12.x"
-	},
-	"categories": [
-		"Snippets"
-	],
-	"scripts": {
-		"prebuild": "node merge.js",
-		"build": "vsce package",
-		"prepublish": "npm run build",
-		"publish": "vsce publish"
-	},
-	"keywords": [
-		"Snippets",
-		"snippet",
-		"vue",
-		"vuex",
-		"pinia",
-		"vue snippet",
-		"vue snippets"
-	],
-	"contributes": {
-		"languages": [
-			{
-				"id": "vue",
-				"aliases": [
-					"Vue",
-					"vue"
-				],
-				"extensions": [
-					".vue"
-				]
-			},
-			{
-				"id": "vue-html",
-				"aliases": [
-					"Vue-html"
-				]
-			}
-		],
-		"snippets": [
-			{
-				"language": "javascript",
-				"path": "./snippets/javascript.json"
-			},
-			{
-				"language": "javascriptreact",
-				"path": "./snippets/javascript.json"
-			},
-			{
-				"language": "typescript",
-				"path": "./snippets/javascript.json"
-			}
-		]
-	},
-	"devDependencies": {
-		"glob": "^7.1.4"
-	}
+  "name": "vscode-pinia-snippets",
+  "publisher": "NicholasHsiang",
+  "displayName": "Pinia Snippets",
+  "description": "Code snippets for Pinia",
+  "icon": "art/icon.png",
+  "version": "1.0.1",
+  "galleryBanner": {
+    "color": "#ffffff",
+    "theme": "dark"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xianghongai/vscode-pinia-snippets/issues"
+  },
+  "homepage": "https://github.com/xianghongai/vscode-pinia-snippets/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xianghongai/vscode-pinia-snippets/blob/master/README.md"
+  },
+  "engines": {
+    "vscode": "^0.12.x"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "scripts": {
+    "prebuild": "node merge.js",
+    "build": "vsce package",
+    "prepublish": "npm run build",
+    "publish": "vsce publish"
+  },
+  "keywords": [
+    "Snippets",
+    "snippet",
+    "vue",
+    "vuex",
+    "pinia",
+    "vue snippet",
+    "vue snippets"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "vue",
+        "aliases": [
+          "Vue",
+          "vue"
+        ],
+        "extensions": [
+          ".vue"
+        ]
+      },
+      {
+        "id": "vue-html",
+        "aliases": [
+          "Vue-html"
+        ]
+      }
+    ],
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/javascript.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/javascript.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "glob": "^7.1.4"
+  }
 }

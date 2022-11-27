@@ -1,6 +1,6 @@
 {
-	"pinia": {
-		"prefix": "pinia",
+	"Create Pinia Instance": {
+		"prefix": ["pinia", "cp"],
 		"body": [
 			"import { createPinia } from 'pinia';",
 			"const pinia = createPinia();",
@@ -8,8 +8,8 @@
 		],
 		"description": "Create a pinia instance (the root store) and pass it to the app as a plugin.\n"
 	},
-	"pinia using Vue 2": {
-		"prefix": "pinia4vue2",
+	"Create Pinia Instance for Vue 2": {
+		"prefix": ["pinia4vue2", "cp4vue2"],
 		"body": [
 			"import { createPinia, PiniaVuePlugin } from 'pinia';",
 			"Vue.use(PiniaVuePlugin);",
@@ -22,10 +22,10 @@
 		"body": [
 			"import { defineStore } from 'pinia';",
 			"",
-			"export const use${1/(.*)/${1:/pascalcase}/}Store = defineStore('${1:feature}', () => {",
-			"\t$2",
+			"export const use${1:${TM_FILENAME_BASE/(\\w+)?[-_\\s]+(\\w+)/${1:/capitalize}${2:/capitalize}/g}}Store = defineStore('${2:${TM_FILENAME_BASE/(\\w+)?[-_\\s]+(\\w+)/${1:/downcase}-${2:/downcase}/g}}', () => {",
+			"\t$3",
 			"\treturn {",
-			"\t\t$3",
+			"\t\t$4",
 			"\t}",
 			"});",
 			""
@@ -33,19 +33,19 @@
 		"description": "`defineStore()` accepts two distinct values for its second argument:\na Setup function or an Options object.\nIn Setup Stores:\n- `ref()`s become `state` properties,\n- `computed()`s become `getters`\n- `function()`s become `actions`\n"
 	},
 	"Pinia Defining Option Stores": {
-		"prefix": ["defineStore", "dos"],
+		"prefix": ["defineStore", "dso"],
 		"body": [
 			"import { defineStore } from 'pinia';",
 			"",
-			"export const use${1/(.*)/${1:/pascalcase}/}Store = defineStore('${1:feature}', {",
+			"export const use${1:${TM_FILENAME_BASE/(\\w+)?[-_\\s]+(\\w+)/${1:/capitalize}${2:/capitalize}/g}}Store = defineStore('${2:${TM_FILENAME_BASE/(\\w+)?[-_\\s]+(\\w+)/${1:/downcase}-${2:/downcase}/g}}', {",
 			"\tstate: () => ({",
-			"\t\t${2}",
+			"\t\t${3}",
 			"\t}),",
 			"\tgetters: {",
-			"\t\t${3}",
+			"\t\t${4}",
 			"\t},",
 			"\tactions: {",
-			"\t\t${4}",
+			"\t\t${5}",
 			"\t},",
 			"});",
 			""
@@ -92,6 +92,23 @@
 		],
 		"description": "use the `mapWritableState()` helper to map writable state properties as computed properties,\nyou cannot pass a function. (e.g. have a form)\n"
 	},
+	"Pinia Composition API - With setup()": {
+		"prefix": ["store2composition", "us"],
+		"body": [
+			"${2:const ${1/(.*)/${1:/camelcase}/}Store = use${1/(.*)/${1:/pascalcase}/}Store();}"
+		],
+		"description": "directly access any `state/getter` as a property of the store instance"
+	},
+	"Pinia Options API - With setup()": {
+		"prefix": ["store2option", "uso"],
+		"body": [
+			"setup() {",
+			"\tconst ${1:feature}Store = use${1/(.*)/${1:/pascalcase}/}Store()",
+			"\treturn { ${1:feature}Store }",
+			"},"
+		],
+		"description": "The `setup()` hook can make using Pinia easier to work with in the Options API. No extra map helper functions needed.\n"
+	},
 	"Pinia Options API - Without setup() - mapState()": {
 		"prefix": "ms",
 		"body": ["...mapState(use${1:Feature}Store, ['${2:state/getter}']),"],
@@ -122,23 +139,6 @@
 			"});"
 		],
 		"description": "Pinia Subscribing to the state.\nthis subscription will be kept even after the component is unmounted:\n`featureStore.$subscribe(callback, { detached: true })`\n"
-	},
-	"Pinia Composition API - With setup()": {
-		"prefix": ["store2composition", "us"],
-		"body": [
-			"${2:const ${1/(.*)/${1:/camelcase}/}Store = use${1/(.*)/${1:/pascalcase}/}Store();}"
-		],
-		"description": "directly access any `state/getter` as a property of the store instance"
-	},
-	"Pinia Options API - With setup()": {
-		"prefix": ["store2option", "uso"],
-		"body": [
-			"setup() {",
-			"\tconst ${1:feature}Store = use${1/(.*)/${1:/pascalcase}/}Store()",
-			"\treturn { ${1:feature}Store }",
-			"},"
-		],
-		"description": "The `setup()` hook can make using Pinia easier to work with in the Options API. No extra map helper functions needed.\n"
 	},
 	"Pinia Subscribing to actions ($onAction)": {
 		"prefix": ["store.$onAction", "sa"],
